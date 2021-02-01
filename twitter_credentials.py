@@ -1,0 +1,5 @@
+API_Key = "YHBUUFlhjMoTRB7xprpEUtTg0"
+API_Secret_key = "Jnrqw8fDjsmW3kDIABz5ZtrMB6lEqMo0qhIPTkNeF0oPxPQHdb"
+Bearer_Token = "AAAAAAAAAAAAAAAAAAAAAM5EMQEAAAAAY4aKHF%2BwDEaUk3lMlTrLiJ0tIDA%3DCnXt88DtbiU3xulC8VQLlMOmetrOOHccl3dbfnEd3kI8vxa9RA"
+Access_Token = "1345399619384033281-BJdTJOHTgwRnLACxhwpGOT5N2owavL"
+Access_Token_Secret = "ZZshwipaoagqz9zZ4UGZIPXLQIw8af2FmbPWwgRopiI6L"

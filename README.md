@@ -4,7 +4,7 @@ Made by-
 Gaurav Singh,
 Abhinav Dugar,
 Sidharth Lanka,
-Navyasree B, \\
+Navyasree B, \
 ### IT254 Web Technologies Project
 ## Work Done
 - Extraction of date using Twitter API and Tweepy and storing it into a csv file

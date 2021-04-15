@@ -1,0 +1,29 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+
+
+
+<script>
+
+ var max=12;
+ var min=0;
+ var encoding = [0,1,1,2,2,2,2,2,3,3,3,4]
+  var countries = Datamap.prototype.worldTopo.objects.world.geometries;
+for (var i = 0, j = countries.length; i < j; i++) {
+  var a = Math.floor(Math.random() * (max - min + 1)) + min;
+  var b = Math.floor(Math.random() * (500 - 0 + 1)) + 0;
+  var c = Math.random() * (70 - 50) + 50;
+  console.log(countries[i].id + ","+ encoding[a]+","+b+","+c);
+}
+
+
+
+</script>

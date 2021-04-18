@@ -1,3 +1,4 @@
+
 <!-- Code from d3-graph-gallery.com -->
 <!DOCTYPE html>
 <meta charset="utf-8">
@@ -10,8 +11,20 @@
 
 
 <!-- Create an element where the map will take place -->
+
 <svg id="my_dataviz" width="1000" height="750"></svg>
 
+<style>
+    div.tooltip {
+        color: #222;
+        background-color: #fff;
+        padding: .5em;
+        text-shadow: #f5f5f5 0 1px 0;
+        border-radius: 2px;
+        opacity: 0.9;
+        position: absolute;
+    }
+</style>
 
 <script>
 
@@ -26,6 +39,8 @@ var projection = d3.geoMercator()
   .scale(150)
   .center([0,20])
   .translate([width / 2, height / 2]);
+var tooltip = d3.select('body').append('div')
+            .attr('class', 'hidden tooltip');
 
 // Data and color scale
 var data = d3.map();
@@ -67,8 +82,15 @@ function ready(error, topo) {
       .duration(200)
       .style("opacity", 1)
       .style("stroke", "black")
+    var mouse = d3.mouse(svg.node()).map(function(d) {
+                        return parseInt(d);
+                    });
+    var sentiments = ['joy 😃', 'sadness 😔', 'fear😨', 'anger 😡', 'neutral 😐'];
+    tooltip.classed('hidden', false)
+                        .attr('style', 'left:' + (mouse[0] + 15) +
+                                'px; top:' + (mouse[1] - 35) + 'px')
+                        .html(sentiments[d.total]);
     console.log(d);
-
   }
 
   let mouseLeave = function(d) {
@@ -80,6 +102,7 @@ function ready(error, topo) {
       .transition()
       .duration(200)
       .style("stroke", "transparent")
+    tooltip.classed('hidden', true);
   }
 
   // Draw the map
@@ -100,8 +123,9 @@ function ready(error, topo) {
       .style("stroke", "transparent")
       .attr("class", function(d){ return "Country" } )
       .style("opacity", .8)
-      .on("mouseover", mouseOver )
-      .on("mouseleave", mouseLeave )
+      .on("mouseover", mouseOver)
+      .on("mouseleave", mouseLeave)
     }
 
 </script>
+  

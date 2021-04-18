@@ -39,15 +39,18 @@ def remove_emoji(string):
     return emoji_pattern.sub(r'', string)
 
 if __name__ == '__main__':
-    with open('tweetsCopy.csv', encoding = "utf8") as csvfile:
-        reader = csv.DictReader(csvfile)
-        i=0
-        for row in reader:
-            text = row['Text']
-            result = re.sub(r"RT", "", text)
-            result = re.sub(r"@[a-zA-Z0-9]+", "", result)
-            result = re.sub(r"http[a-zA-Z0-9:./]+", "", result)
-            final_text = remove_emoji(result)
-            df.loc[i, 'Text'] = final_text
-            df.to_csv("tweetsCopy.csv", index=False) 
-            i = i+1
+    try: 
+        with open('tweetsCopy.csv', encoding = "utf8") as csvfile:
+            reader = csv.DictReader(csvfile)
+            i=0
+            for row in reader:
+                text = row['Text']
+                result = re.sub(r"RT", "", text)
+                result = re.sub(r"@[a-zA-Z0-9]+", "", result)
+                result = re.sub(r"http[a-zA-Z0-9:./]+", "", result)
+                final_text = remove_emoji(result)
+                df.loc[i, 'Text'] = final_text
+                df.to_csv("tweetsCopy.csv", index=False) 
+                i = i+1
+    except Exception:
+        pass

@@ -1,0 +1,107 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+
+
+<!-- Create an element where the map will take place -->
+<svg id="my_dataviz" width="1000" height="750"></svg>
+
+
+<script>
+
+// The svg
+var svg = d3.select("svg"),
+  width = +svg.attr("width"),
+  height = +svg.attr("height");
+
+// Map and projection
+var path = d3.geoPath();
+var projection = d3.geoMercator()
+  .scale(150)
+  .center([0,20])
+  .translate([width / 2, height / 2]);
+
+// Data and color scale
+var data = d3.map();
+function colourmap(total){
+ if(total==0){
+   return "#fdb740";
+ }
+ if(total==1){
+   return "#40c4e0";
+ }
+ if(total==2){
+   return "#8d679d";
+ }
+ if(total==3){
+   return "#db4041";
+ }
+ if(total==4){
+   return "#cebb9e";
+ }
+}
+// Load external data and boot
+d3.queue()
+  .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+  .defer(d3.csv, "final_emotion.csv", function(d) { data.set(d.Country, d.Dominant_Emotion); })
+  .await(ready);
+  var countries = Datamap.prototype.worldTopo.objects.world.geometries;
+for (var i = 0, j = countries.length; i < j; i++) {
+  console.log(countries[i].id);
+}
+function ready(error, topo) {
+
+  let mouseOver = function(d) {
+    d3.selectAll(".Country")
+      .transition()
+      .duration(200)
+      .style("opacity", .5)
+    d3.select(this)
+      .transition()
+      .duration(200)
+      .style("opacity", 1)
+      .style("stroke", "black")
+    console.log(d);
+
+  }
+
+  let mouseLeave = function(d) {
+    d3.selectAll(".Country")
+      .transition()
+      .duration(200)
+      .style("opacity", .8)
+    d3.select(this)
+      .transition()
+      .duration(200)
+      .style("stroke", "transparent")
+  }
+
+  // Draw the map
+  svg.append("g")
+    .selectAll("path")
+    .data(topo.features)
+    .enter()
+    .append("path")
+      // draw each country
+      .attr("d", d3.geoPath()
+        .projection(projection)
+      )
+      // set the color of each country
+      .attr("fill", function (d) {
+        d.total = data.get(d.id) || 0;
+        return colourmap(d.total);
+      })
+      .style("stroke", "transparent")
+      .attr("class", function(d){ return "Country" } )
+      .style("opacity", .8)
+      .on("mouseover", mouseOver )
+      .on("mouseleave", mouseLeave )
+    }
+
+</script>

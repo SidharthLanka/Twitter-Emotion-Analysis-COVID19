@@ -7,8 +7,6 @@ Sidharth Lanka,
 Navyasree B
 ### IT254 Web Technologies Project
 ## Work Done
-- Extraction of date using Twitter API and Tweepy and storing it into a csv file
+- Extraction of date using Twitter API and Tweepy and storing it into a csv file, LSTM, Web App
 ## Work to be done
-- Preprocessing
-- LSTM 
-- Web App using Django
+- Improving UI

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
-<script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+<script src="https://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
 
 
 <!-- Create an element where the map will take place -->
@@ -85,14 +85,13 @@ function ready(error, topo) {
     var mouse = d3.mouse(svg.node()).map(function(d) {
                         return parseInt(d);
                     });
-    var sentiments = ['joy 😃', 'sadness 😔', 'fear😨', 'anger 😡', 'neutral 😐'];
+    var sentiments = ['joy 😃', 'sadness 😔', 'fear 😨', 'anger 😡', 'neutral 😐'];
     tooltip.classed('hidden', false)
                         .attr('style', 'left:' + (mouse[0] + 15) +
                                 'px; top:' + (mouse[1] - 35) + 'px')
                         .html(sentiments[d.total]);
     console.log(d);
   }
-
   let mouseLeave = function(d) {
     d3.selectAll(".Country")
       .transition()
@@ -104,7 +103,7 @@ function ready(error, topo) {
       .style("stroke", "transparent")
     tooltip.classed('hidden', true);
   }
-
+  
   // Draw the map
   svg.append("g")
     .selectAll("path")

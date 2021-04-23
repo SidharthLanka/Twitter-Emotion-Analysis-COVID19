@@ -63,7 +63,7 @@ function colourmap(total){
 }
 // Load external data and boot
 d3.queue()
-  .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+  .defer(d3.json, "https://raw.githack.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
   .defer(d3.csv, "final_emotion.csv", function(d) { data.set(d.Country, d.Dominant_Emotion); })
   .await(ready);
   var countries = Datamap.prototype.worldTopo.objects.world.geometries;

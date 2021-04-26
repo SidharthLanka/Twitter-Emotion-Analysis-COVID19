@@ -1,0 +1,33 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<!-- Load d3.js -->
+<body>
+<ul>
+  <li class="demo"><a href="map.html">Map</a></li>
+  <li class="demo"><a class="active" href="table.html">Table</a></li>
+  <li class="per">Twitter Emotion Analysis</li>
+</ul>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script type="text/javascript"charset="utf-8">
+    d3.text("final_emotion.csv", function(data) {
+        var parsedCSV = d3.csv.parseRows(data);
+
+        var container = d3.select("body")
+            .append("table")
+
+            .selectAll("tr")
+                .data(parsedCSV).enter()
+                .append("tr")
+
+            .selectAll("td")
+                .data(function(d) { return d; }).enter()
+                .append("td")
+                .text(function(d) { return d; });
+    });
+</script>
+</body>

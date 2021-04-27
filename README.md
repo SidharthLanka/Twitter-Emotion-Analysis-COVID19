@@ -15,7 +15,7 @@ We used multiple models to test the emotion analysis and achieved the following 
 
 To run:
 
-In Git BASH, go to root directory of project and type ```http-server``` (if not installed, install with npm)
+In your Terminal, go to root directory of project and type ```http-server``` (if not installed, install with npm)
 
 Go to ```localhost:8080```.
 
